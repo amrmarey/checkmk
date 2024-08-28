@@ -1,4 +1,4 @@
-#version: '3'
+version: '3'
 
 services:
   checkmk_cloud:
@@ -7,8 +7,8 @@ services:
     networks:
       - checkmk_network
     ports:
-      - "${CHECKMK_PORT}:5000"
-      - "${CHECKMK_REGISTER_PORT}:8000"
+      - "${CHECKMK_PORT}:5000"  # Updated port mapping
+      - "${CHECKMK_REGISTER_PORT}:8000"  # Updated port mapping
     volumes:
       - monitoring_data:/omd/sites:rw
       - /etc/localtime:/etc/localtime:ro
