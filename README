@@ -17,94 +17,66 @@ Checkmk is a powerful IT monitoring solution that helps you monitor your entire 
 
 Below is a high-level architecture of the Checkmk setup using Docker Compose:
 
-```
+```text
 +------------------+       +----------------+
-|   User Browser   | <---> |   Checkmk Web  |
-+------------------+       |   Interface    |
-                           +----------------+
-                                  |
-                         Docker Network (checkmk_network)
-                                  |
-+-----------------------------------------------+
-|               Checkmk Docker Container        |
-|   (checkmk/check-mk-cloud:latest image)       |
-|                                               |
-| - Exposed Ports: 5000 (Web UI), 8000 (API)    |
-| - Persistent Volume: monitoring_data          |
-| - Health Checks and Resource Limits Configured|
-+-----------------------------------------------+
+|   User Browser   | <---> |   Checkmk GUI  |
++------------------+       +----------------+
+                             |
+                             v
++----------------+     +----------------+
+|  Checkmk Core  | <-->|  Docker Agent  |
++----------------+     +----------------+
 ```
 
 ## Prerequisites
 
-- Docker installed on your system.
-- Docker Compose installed.
-- Basic knowledge of Docker and Checkmk.
+Before you begin, ensure you have met the following requirements:
 
-## Installation Steps
+- Docker and Docker Compose installed on your system.
+- Basic knowledge of Docker and Docker Compose commands.
+- A user account with necessary permissions to run Docker commands.
+
+## Installation
+
+To set up the Checkmk monitoring solution using Docker, follow these steps:
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/amrmarey/checkmk.git
-   cd checkmk
+   git clone https://github.com/yourusername/checkmk-monitoring.git
+   cd checkmk-monitoring
    ```
 
-2. **Configure Environment Variables**:
-   Create a `.env` file in the root directory with the following contents or use the provided `.env` template:
-   ```bash
-   CHECKMK_PORT=5000
-   CHECKMK_REGISTER_PORT=8000
-   CMK_SITE_ID=mysite
-   CMK_PASSWORD=yourpassword
-   ```
-
-3. **Deploy Checkmk with Docker Compose**:
-   Run the following command to start the Checkmk container:
+2. **Build and Start the Docker Containers**:
    ```bash
    docker-compose up -d
    ```
 
-   This will start the Checkmk container in detached mode.
+3. **Access the Checkmk Web Interface**:
+   Open your web browser and navigate to `http://localhost:8080` to access the Checkmk GUI.
 
-## Configuration
+## Usage
 
-- **Site ID**: Set in the `.env` file as `CMK_SITE_ID`.
-- **Password**: Set in the `.env` file as `CMK_PASSWORD`.
-- **Ports**: Configured in the `.env` file:
-  - `CHECKMK_PORT` (default: 5000)
-  - `CHECKMK_REGISTER_PORT` (default: 8000)
+Once the setup is complete, you can start monitoring your infrastructure:
 
-## Advanced Configuration
-
-- **Scaling**: Modify `docker-compose.yml` to scale the number of replicas if needed.
-- **Custom Plugins**: Mount custom plugins or configurations by adding volume mounts to the `docker-compose.yml` file.
-- **Resource Optimization**: Adjust CPU and memory limits in the `docker-compose.yml` under the `deploy` section.
-
-## Screenshots
-
-Include screenshots of the Checkmk web interface, configuration screens, and sample dashboards to help users understand the interface better.
-
-## Troubleshooting
-
-- **Container Not Starting**: Check Docker logs using `docker logs monitoring`.
-- **Health Check Failures**: Ensure ports `5000` and `8000` are not in use by other services.
-- **Configuration Changes**: After making changes to the `.env` file or `docker-compose.yml`, run `docker-compose down && docker-compose up -d` to apply the changes.
-
-## Support
-
-For support, please refer to the [Checkmk Documentation](https://docs.checkmk.com/) or open an issue in this repository.
+- **Add Hosts and Services**: Use the web interface to add hosts and services to be monitored.
+- **Set Up Alerts and Notifications**: Configure custom alert rules to get notified via email, SMS, or other methods.
+- **Customize Dashboards**: Create custom dashboards to visualize your monitoring data.
 
 ## Contributing
 
-Contributions are welcome! To contribute, please follow these steps:
+If you want to contribute to this project, follow these steps:
+
 1. Fork the repository.
 2. Create a new branch (`git checkout -b feature-branch`).
-3. Commit your changes (`git commit -m 'Add new feature'`).
-4. Push to the branch (`git push origin feature-branch`).
-5. Open a Pull Request.
-
-Ensure your code follows the style guidelines and includes necessary documentation and tests.
+3. Make your changes.
+4. Commit your changes (`git commit -m 'Add some feature'`).
+5. Push to the branch (`git push origin feature-branch`).
+6. Open a pull request.
 
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Contact
+
+If you have any questions or suggestions, feel free to open an issue or contact me directly at [your-email@example.com](mailto:your-email@example.com).
