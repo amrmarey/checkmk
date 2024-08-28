@@ -7,8 +7,8 @@ services:
     networks:
       - checkmk_network
     ports:
-      - "8080:5000"
-      - "8000:8000"
+      - "${CHECKMK_PORT}:5000"
+      - "${CHECKMK_REGISTER_PORT}:8000"
     volumes:
       - monitoring_data:/omd/sites:rw
       - /etc/localtime:/etc/localtime:ro
@@ -25,8 +25,8 @@ services:
     deploy:
       resources:
         limits:
-          memory: 8g   # Increased memory limit
-          cpus: "4"    # Increased CPU limit
+          memory: 8g   #  Memory limit
+          cpus: "4"    #  CPU limit
 
 volumes:
   monitoring_data:

@@ -1,0 +1,25 @@
+# Checkmk Docker Setup
+
+This repository provides a simple and efficient way to deploy Checkmk using Docker and Docker Compose. Checkmk is a comprehensive IT monitoring system that helps you monitor all aspects of your infrastructure, including networks, servers, cloud environments, databases, and applications.
+
+## Table of Contents
+
+- [Checkmk Docker Setup](#checkmk-docker-setup)
+  - [Table of Contents](#table-of-contents)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+
+## Prerequisites
+
+Before you begin, ensure you have the following software installed on your local machine:
+
+- [Docker](https://docs.docker.com/get-docker/)
+- [Docker Compose](https://docs.docker.com/compose/install/)
+
+## Installation
+
+1. Clone this repository to your local machine:
+
+   ```bash
+   git clone https://github.com/your-username/checkmk-docker-setup.git
+   cd checkmk-docker-setup
