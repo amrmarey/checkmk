@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  checkmk_cloud:
+    image: checkmk/check-mk-cloud:latest
+    container_name: monitoring
+    networks:
+      - checkmk_network
+    ports:
+      - "8080:5000"
+      - "8000:8000"
+    volumes:
+      - monitoring_data:/omd/sites:rw
+      - /etc/localtime:/etc/localtime:ro
+    tmpfs:
+      - /opt/omd/sites/cmk/tmp:uid=1000,gid=1000
+    env_file:
+      - .env  # Load sensitive data from .env file
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000"]
+      interval: 1m
+      timeout: 10s
+      retries: 3
+    restart: always
+    deploy:
+      resources:
+        limits:
+          memory: 8g   # Increased memory limit
+          cpus: "4"    # Increased CPU limit
+
+volumes:
+  monitoring_data:
+    driver: local
+
+networks:
+  checkmk_network:
+    driver: bridge
