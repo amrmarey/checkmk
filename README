@@ -1,25 +1,62 @@
-# Checkmk Docker Setup
 
-This repository provides a simple and efficient way to deploy Checkmk using Docker and Docker Compose. Checkmk is a comprehensive IT monitoring system that helps you monitor all aspects of your infrastructure, including networks, servers, cloud environments, databases, and applications.
+# Checkmk Monitoring Solution
 
-## Table of Contents
-
-- [Checkmk Docker Setup](#checkmk-docker-setup)
-  - [Table of Contents](#table-of-contents)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
+This repository contains the setup for a Checkmk monitoring solution using Docker. The configuration is defined using `docker-compose` to facilitate deployment and management of the monitoring system.
 
 ## Prerequisites
 
-Before you begin, ensure you have the following software installed on your local machine:
+- Docker installed on your system.
+- Docker Compose installed.
+- Basic knowledge of Docker and Checkmk.
 
-- [Docker](https://docs.docker.com/get-docker/)
-- [Docker Compose](https://docs.docker.com/compose/install/)
+## Installation Steps
 
-## Installation
-
-1. Clone this repository to your local machine:
-
+1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/your-username/checkmk-docker-setup.git
-   cd checkmk-docker-setup
+   git clone https://github.com/amrmarey/checkmk.git
+   cd checkmk
+   ```
+
+2. **Configure Environment Variables**:
+   Create a `.env` file in the root directory with the following contents or use the provided `.env` template:
+   ```bash
+   CHECKMK_PORT=5000
+   CHECKMK_REGISTER_PORT=8000
+   CMK_SITE_ID=mysite
+   CMK_PASSWORD=yourpassword
+   ```
+
+3. **Deploy Checkmk with Docker Compose**:
+   Run the following command to start the Checkmk container:
+   ```bash
+   docker-compose up -d
+   ```
+
+   This will start the Checkmk container in detached mode.
+
+## Configuration
+
+- **Site ID**: Set in the `.env` file as `CMK_SITE_ID`.
+- **Password**: Set in the `.env` file as `CMK_PASSWORD`.
+- **Ports**: Configured in the `.env` file:
+  - `CHECKMK_PORT` (default: 5000)
+  - `CHECKMK_REGISTER_PORT` (default: 8000)
+
+## Usage
+
+- Access the Checkmk web interface at `http://localhost:<CHECKMK_PORT>` (default: `http://localhost:5000`).
+- Use the site ID and password set in the `.env` file to log in.
+
+## Troubleshooting
+
+- **Container Not Starting**: Check Docker logs using `docker logs monitoring`.
+- **Health Check Failures**: Ensure ports `5000` and `8000` are not in use by other services.
+- **Configuration Changes**: After making changes to the `.env` file or `docker-compose.yml`, run `docker-compose down && docker-compose up -d` to apply the changes.
+
+## Contributing
+
+Contributions are welcome! Please submit a pull request or open an issue for any improvements or suggestions.
+
+## License
+
+This project is licensed under the MIT License.
