@@ -42,8 +42,8 @@ To set up the Checkmk monitoring solution using Docker, follow these steps:
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/yourusername/checkmk-monitoring.git
-   cd checkmk-monitoring
+   git clone https://github.com/amrmarey/checkmk.git
+   cd checkmk
    ```
 
 2. **Build and Start the Docker Containers**:
