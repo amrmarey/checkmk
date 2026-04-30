@@ -15,3 +15,5 @@ Thumbs.db
 # Docker / runtime
 *.pid
 *.log
+.claude/
+.vscode/
