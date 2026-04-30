@@ -192,12 +192,13 @@ flowchart LR
 
 All runtime configuration lives in `.env`:
 
-| Variable                | Purpose                                                           | Default   |
-| ----------------------- | ----------------------------------------------------------------- | --------- |
-| `CHECKMK_PORT`          | Host port mapped to the Checkmk web UI (container port `5000`).   | `8080`    |
-| `CHECKMK_REGISTER_PORT` | Host port mapped to the agent receiver (container port `8000`).   | `8000`    |
-| `CMK_SITE_ID`           | OMD site name. Becomes the URL path segment and tmpfs mount path. | `mysite`  |
-| `CMK_PASSWORD`          | Optional. Sets the initial `cmkadmin` password.                   | *random*  |
+| Variable                | Purpose                                                             | Default    |
+| ----------------------- | ------------------------------------------------------------------- | ---------- |
+| `CHECKMK_PORT`          | Host port mapped to the Checkmk web UI (container port `5000`).     | `8080`     |
+| `CHECKMK_REGISTER_PORT` | Host port mapped to the agent receiver (container port `8000`).     | `8000`     |
+| `CMK_SITE_ID`           | OMD site name. Becomes the URL path segment and tmpfs mount path.   | `mysite`   |
+| `CMK_USERNAME`          | Documentary only — not read by the container (admin is `cmkadmin`). | `cmkadmin` |
+| `CMK_PASSWORD`          | Optional. Sets the initial `cmkadmin` password on first boot.       | *random*   |
 
 > ⚠️ `CMK_SITE_ID` must match the `tmpfs` mount path in `docker-compose.yml`. The compose file already templates this for you, but if you customize the mount path manually, keep both in sync.
 
