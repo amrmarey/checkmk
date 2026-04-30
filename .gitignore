@@ -1,0 +1,17 @@
+# Environment / secrets
+.env
+.env.local
+*.env.local
+
+# IDE
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker / runtime
+*.pid
+*.log

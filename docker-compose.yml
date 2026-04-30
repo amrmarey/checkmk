@@ -1,32 +1,34 @@
-version: '3'
-
 services:
   checkmk_cloud:
-    image: checkmk/check-mk-cloud:latest
+    # Pinned for reproducibility. Review https://checkmk.com/download for newer
+    # patch releases and bump deliberately rather than tracking :latest.
+    # "ultimate" is the renamed Cloud edition (Checkmk 2.4+ restructure).
+    image: checkmk/check-mk-ultimate:2.5.0
     container_name: monitoring
     networks:
       - checkmk_network
     ports:
-      - "${CHECKMK_PORT}:5000"  # Updated port mapping
-      - "${CHECKMK_REGISTER_PORT}:8000"  # Updated port mapping
+      - "${CHECKMK_PORT}:5000"
+      - "${CHECKMK_REGISTER_PORT}:8000"
     volumes:
       - monitoring_data:/omd/sites:rw
       - /etc/localtime:/etc/localtime:ro
     tmpfs:
-      - /opt/omd/sites/cmk/tmp:uid=1000,gid=1000
+      - /opt/omd/sites/${CMK_SITE_ID}/tmp:uid=1000,gid=1000
     env_file:
-      - .env  # Load sensitive data from .env file
+      - .env
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:5000"]
+      test: ["CMD-SHELL", "omd status ${CMK_SITE_ID} >/dev/null 2>&1"]
       interval: 1m
       timeout: 10s
       retries: 3
-    restart: always
+      start_period: 2m
+    restart: unless-stopped
     deploy:
       resources:
         limits:
-          memory: 8g   #  Memory limit
-          cpus: "4"    #  CPU limit
+          memory: 8g
+          cpus: "4"
 
 volumes:
   monitoring_data:
