@@ -6,7 +6,7 @@
 
 [![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?logo=docker&logoColor=white)](https://www.docker.com/)
 [![Checkmk](https://img.shields.io/badge/Checkmk-Ultimate%202.5.0-15D1A0?logo=checkmk&logoColor=white)](https://checkmk.com/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Licensing](https://img.shields.io/badge/Licensing-Checkmk%20GmbH-15D1A0)](#-licensing)
 [![GitHub Issues](https://img.shields.io/github/issues/amrmarey/checkmk)](https://github.com/amrmarey/checkmk/issues)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](#-contributing)
 [![Built with AI assist](https://img.shields.io/badge/built_with-AI_assist-8A2BE2?logo=anthropic&logoColor=white)](#-credits)
@@ -45,7 +45,7 @@ Then open **http://localhost:8080/mysite/** and log in as `cmkadmin`.
 - [💾 Backup & Restore](#-backup--restore)
 - [🩺 Troubleshooting](#-troubleshooting)
 - [🤝 Contributing](#-contributing)
-- [📄 License](#-license)
+- [📄 Licensing](#-licensing)
 - [📬 Contact](#-contact)
 - [🤖 Credits](#-credits)
 
@@ -396,9 +396,14 @@ For larger changes, please [open an issue](https://github.com/amrmarey/checkmk/i
 
 ---
 
-## 📄 License
+## 📄 Licensing
 
-This project is distributed under the [MIT License](LICENSE) — free to use, modify, and distribute with attribution.
+> ⚠️ **This repository does not own or relicense Checkmk.** It is a deployment recipe (Docker Compose, env template, README) for installing Checkmk on your own infrastructure.
+
+- **Checkmk software** — © [Checkmk GmbH](https://checkmk.com/). The Checkmk Ultimate edition used here is **commercial software** and requires a valid license from Checkmk GmbH for production use. See [checkmk.com/pricing](https://checkmk.com/pricing) and the [Checkmk EULA](https://checkmk.com/legal/end-user-license-agreement) for terms.
+- **Checkmk Raw edition** is the free/open-source variant, distributed under the [GPLv2](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html). If you intend to use this stack without a commercial license, switch the image in `docker-compose.yml` to `checkmk/check-mk-raw`.
+- **Trademarks** — *Checkmk*, the Checkmk logo, and related marks are trademarks of Checkmk GmbH. This project is **not affiliated with, endorsed by, or sponsored by** Checkmk GmbH.
+- **Deployment files in this repo** (`docker-compose.yml`, `.env.example`, `README.md`) are provided as-is for convenience, with no warranty. Use at your own risk.
 
 ---
 
